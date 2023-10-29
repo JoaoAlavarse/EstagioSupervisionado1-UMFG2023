@@ -44,4 +44,9 @@ public class EmployeeService {
             repository.delete(employee);
         }
     }
+
+    public Optional<EmployeeResponseDTO> getById(Long id){
+        Optional<EmployeeResponseDTO> employee = repository.findById(id).map(EmployeeResponseDTO::new);
+        return employee;
+    }
 }

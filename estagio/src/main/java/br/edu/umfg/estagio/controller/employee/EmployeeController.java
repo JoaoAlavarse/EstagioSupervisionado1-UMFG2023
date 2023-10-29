@@ -1,5 +1,6 @@
 package br.edu.umfg.estagio.controller.employee;
 
+import br.edu.umfg.estagio.entity.employee.Employee;
 import br.edu.umfg.estagio.entity.employee.EmployeeRequestDTO;
 import br.edu.umfg.estagio.entity.employee.EmployeeResponseDTO;
 import br.edu.umfg.estagio.service.employee.EmployeeService;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("employee")
@@ -37,5 +39,11 @@ public class EmployeeController {
     public ResponseEntity<Object> deleteEmployee(@PathVariable Long id){
         employeeService.deleteEmployee(id);
         return ResponseEntity.ok(null);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Optional<EmployeeResponseDTO>> getById(@PathVariable Long id){
+        Optional<EmployeeResponseDTO> employee = employeeService.getById(id);
+        return ResponseEntity.ok(employee);
     }
 }
