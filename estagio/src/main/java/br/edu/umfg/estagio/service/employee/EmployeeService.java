@@ -1,37 +1,24 @@
-package br.edu.umfg.estagio.controller;
+package br.edu.umfg.estagio.service.employee;
 
 import br.edu.umfg.estagio.entity.employee.Employee;
 import br.edu.umfg.estagio.entity.employee.EmployeeRequestDTO;
 import br.edu.umfg.estagio.entity.employee.EmployeeResponseDTO;
-import br.edu.umfg.estagio.repository.EmployeeRepository;
+import br.edu.umfg.estagio.repository.employee.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.stream.Collectors.toList;
+@Service
+public class EmployeeService {
 
-@RestController
-@RequestMapping("employee")
-public class EmployeeController {
     @Autowired
     private EmployeeRepository repository;
 
-    @GetMapping
-    public List<EmployeeResponseDTO> getAll(){
-        List<EmployeeResponseDTO> employeeList = repository.findAll().stream().map(EmployeeResponseDTO::new).toList();
-        return employeeList;
-    }
-
-    @PostMapping
-    public void saveEmployee(@RequestBody EmployeeRequestDTO data){
-        Employee employee = new Employee(data);
-        repository.save(employee);
-    }
-
-    @PutMapping(value = "/{id}")
-    public void updateEmployee(@PathVariable Long id, @RequestBody EmployeeRequestDTO data){
+    public void updateEmployee(Long id, EmployeeRequestDTO data){
         Optional<Employee> optionalEmployee = repository.findById(id);
         if (optionalEmployee.isPresent()){
             Employee employee = optionalEmployee.get();
@@ -40,7 +27,16 @@ public class EmployeeController {
         }
     }
 
-    @DeleteMapping(value = "/{id}")
+    public List<EmployeeResponseDTO> getAll(){
+        List<EmployeeResponseDTO> employeeList = repository.findAll().stream().map(EmployeeResponseDTO::new).toList();
+        return employeeList;
+    }
+
+    public void saveEmployee(@RequestBody EmployeeRequestDTO data){
+        Employee employee = new Employee(data);
+        repository.save(employee);
+    }
+
     public void deleteEmployee(@PathVariable Long id){
         Optional<Employee> optionalEmployee = repository.findById(id);
         if (optionalEmployee.isPresent()){

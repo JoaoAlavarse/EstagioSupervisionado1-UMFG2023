@@ -1,4 +1,4 @@
-package br.edu.umfg.estagio.repository;
+package br.edu.umfg.estagio.repository.employee;
 
 import br.edu.umfg.estagio.entity.employee.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
