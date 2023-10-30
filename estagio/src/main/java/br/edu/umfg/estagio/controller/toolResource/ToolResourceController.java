@@ -24,26 +24,26 @@ public class ToolResourceController {
     }
 
     @PostMapping
-    public ResponseEntity<Objects> saveConsumableResource(@RequestBody ToolResourceRequestDTO data){
+    public ResponseEntity<Objects> saveToolResource(@RequestBody ToolResourceRequestDTO data){
         toolResourceService.saveToolResource(data);
         return ResponseEntity.ok(null);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Objects> updateConsumableResource(@PathVariable Long id, @RequestBody ToolResourceRequestDTO data){
+    public ResponseEntity<Objects> updateToolResource(@PathVariable Long id, @RequestBody ToolResourceRequestDTO data){
         toolResourceService.updateToolResource(id, data);
         return ResponseEntity.ok(null);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Objects> deleteConsumableResource(@PathVariable Long id){
+    public ResponseEntity<Objects> deleteToolResource(@PathVariable Long id){
         toolResourceService.deleteToolResource(id);
         return  ResponseEntity.ok(null);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Optional<ToolResourceResponseDTO>> getById(@PathVariable Long id){
-        Optional<ToolResourceResponseDTO> consumableResource = toolResourceService.getById(id);
-        return ResponseEntity.ok(consumableResource);
+        Optional<ToolResourceResponseDTO> toolResource = toolResourceService.getById(id);
+        return ResponseEntity.ok(toolResource);
     }
 }
