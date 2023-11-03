@@ -1,5 +1,6 @@
 package br.edu.umfg.estagio.entity.resource;
 
+import br.edu.umfg.estagio.enums.ResourceType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,7 +22,8 @@ public class Resource {
     private String name;
     private String brand;
     private Long quantity;
-    private Integer type;
+    @Enumerated(EnumType.STRING)
+    private ResourceType type;
     private String observation;
     private Date purchase;
 
