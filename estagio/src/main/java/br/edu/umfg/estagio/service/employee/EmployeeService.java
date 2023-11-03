@@ -18,8 +18,8 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository repository;
 
-    public void updateEmployee(Long id, EmployeeRequestDTO data){
-        Optional<Employee> optionalEmployee = repository.findById(id);
+    public void updateEmployee(Long id_employee, EmployeeRequestDTO data){
+        Optional<Employee> optionalEmployee = repository.findById(id_employee);
         if (optionalEmployee.isPresent()){
             Employee employee = optionalEmployee.get();
             employee.updateFromDTO(data);
@@ -37,16 +37,16 @@ public class EmployeeService {
         repository.save(employee);
     }
 
-    public void deleteEmployee(@PathVariable Long id){
-        Optional<Employee> optionalEmployee = repository.findById(id);
+    public void deleteEmployee(@PathVariable Long id_employee){
+        Optional<Employee> optionalEmployee = repository.findById(id_employee);
         if (optionalEmployee.isPresent()){
             Employee employee = optionalEmployee.get();
             repository.delete(employee);
         }
     }
 
-    public Optional<EmployeeResponseDTO> getById(Long id){
-        Optional<EmployeeResponseDTO> employee = repository.findById(id).map(EmployeeResponseDTO::new);
+    public Optional<EmployeeResponseDTO> getById(Long id_employee){
+        Optional<EmployeeResponseDTO> employee = repository.findById(id_employee).map(EmployeeResponseDTO::new);
         return employee;
     }
 }
