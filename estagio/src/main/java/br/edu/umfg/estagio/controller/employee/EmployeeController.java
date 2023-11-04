@@ -1,6 +1,5 @@
 package br.edu.umfg.estagio.controller.employee;
 
-import br.edu.umfg.estagio.entity.employee.Employee;
 import br.edu.umfg.estagio.entity.employee.EmployeeRequestDTO;
 import br.edu.umfg.estagio.entity.employee.EmployeeResponseDTO;
 import br.edu.umfg.estagio.service.employee.EmployeeService;
