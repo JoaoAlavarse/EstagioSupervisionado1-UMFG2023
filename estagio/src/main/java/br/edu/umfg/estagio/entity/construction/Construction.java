@@ -26,4 +26,34 @@ public class Construction {
     private String address;
     @Enumerated(EnumType.STRING)
     private ConstructionStatus status;
+
+    public Construction(ConstructionRequestDTO data){
+        this.company = data.company();
+        this.cnpj = data.cnpj();
+        this.delivery_date = data.delivery_date();
+        this.start_date = data.start_date();
+        this.address = data.address();
+        this.status = data.status();
+    }
+
+    public void updateFromDTO(ConstructionRequestDTO data){
+        if (data.company() != null){
+            this.company = data.company();
+        }
+        if (data.cnpj() != null){
+            this.cnpj = data.cnpj();
+        }
+        if (data.delivery_date() != null){
+            this.delivery_date = data.delivery_date();
+        }
+        if (data.start_date() != null){
+            this.start_date = data.start_date();
+        }
+        if (data.address() != null){
+            this.address = data.address();
+        }
+        if (data.status() != null){
+            this.status = data.status();
+        }
+    }
 }

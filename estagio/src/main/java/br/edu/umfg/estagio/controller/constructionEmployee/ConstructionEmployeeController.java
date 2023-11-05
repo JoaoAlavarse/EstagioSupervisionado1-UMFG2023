@@ -39,4 +39,10 @@ public class ConstructionEmployeeController {
         Optional<ConstructionEmployeeResponseDTO> constructionEmployeeResponseDTO = service.getById(id_construction_employee);
         return ResponseEntity.ok(constructionEmployeeResponseDTO);
     }
+
+    @PostMapping
+    public ResponseEntity<Object> saveConstructionEmployee(@RequestBody ConstructionEmployeeRequestDTO data){
+        service.saveConstructionEmployee(data);
+        return ResponseEntity.ok(null);
+    }
 }
