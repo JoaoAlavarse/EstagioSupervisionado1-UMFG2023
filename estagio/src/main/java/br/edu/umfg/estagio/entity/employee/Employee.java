@@ -1,5 +1,6 @@
 package br.edu.umfg.estagio.entity.employee;
 
+import br.edu.umfg.estagio.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,6 +22,8 @@ public class Employee {
     private String phone;
     private String address;
     private String charge;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     public Employee(EmployeeRequestDTO data){
         this.name = data.name();
@@ -28,6 +31,7 @@ public class Employee {
         this.phone = data.phone();
         this.address = data.address();
         this.charge = data.charge();
+        this.gender = data.gender();
     }
 
     public void updateFromDTO(EmployeeRequestDTO data){
@@ -45,6 +49,9 @@ public class Employee {
         }
         if(data.charge() != null){
             this.charge = data.charge();
+        }
+        if (data.gender() != null){
+            this.gender = data.gender();
         }
     }
 }
