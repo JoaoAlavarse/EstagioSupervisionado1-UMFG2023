@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Table(name = "employee")
 @Entity(name = "employee")
 @Getter
@@ -24,6 +26,7 @@ public class Employee {
     private String charge;
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    private Date birth_date;
 
     public Employee(EmployeeRequestDTO data){
         this.name = data.name();
@@ -32,6 +35,7 @@ public class Employee {
         this.address = data.address();
         this.charge = data.charge();
         this.gender = data.gender();
+        this.birth_date = data.birth_date();
     }
 
     public void updateFromDTO(EmployeeRequestDTO data){
@@ -52,6 +56,9 @@ public class Employee {
         }
         if (data.gender() != null){
             this.gender = data.gender();
+        }
+        if (data.birth_date() != null){
+            this.birth_date = data.birth_date();
         }
     }
 }
