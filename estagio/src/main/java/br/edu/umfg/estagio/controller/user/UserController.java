@@ -23,14 +23,7 @@ public class UserController {
         return ResponseEntity.ok(userList);
     }
 
-    @PostMapping(value = "login")
-    public ResponseEntity<String> login(@RequestBody UserRequestDTO data){
-        if (service.login(data)){
-            return ResponseEntity.ok("Autenticação bem-sucedida");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
-        }
-    }
+
 
     @PostMapping
     public ResponseEntity<Object> saveUser(@RequestBody UserRequestDTO data){

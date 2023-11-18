@@ -19,8 +19,6 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository repository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     public void updateUser(Long id_user, UserRequestDTO data){
         Optional<User> optionalUser = repository.findById(id_user);
@@ -55,8 +53,5 @@ public class UserService {
         return user;
     }
 
-    public Boolean login(UserRequestDTO data){
-        User user = repository.findByEmail(data.email());
-        return user != null && passwordEncoder.matches(data.password(), user.getPassword());
-    }
+
 }
