@@ -1,8 +1,10 @@
 package br.edu.umfg.estagio.controller.employee;
 
+import br.edu.umfg.estagio.entity.employee.Employee;
 import br.edu.umfg.estagio.entity.employee.EmployeeRequestDTO;
 import br.edu.umfg.estagio.entity.employee.EmployeeResponseDTO;
 import br.edu.umfg.estagio.service.employee.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +25,10 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveEmployee(@RequestBody EmployeeRequestDTO data){
-        employeeService.saveEmployee(data);
-        return ResponseEntity.ok(null);
+    public ResponseEntity<EmployeeResponseDTO> saveEmployee(@Valid @RequestBody EmployeeRequestDTO data){
+        Employee employee = employeeService.saveEmployee(data);
+        EmployeeResponseDTO response = new EmployeeResponseDTO(employee);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping(value = "/{id_employee}")

@@ -32,9 +32,9 @@ public class EmployeeService {
         return employeeList;
     }
 
-    public void saveEmployee(@RequestBody EmployeeRequestDTO data){
+    public Employee saveEmployee(@RequestBody EmployeeRequestDTO data){
         Employee employee = new Employee(data);
-        repository.save(employee);
+        return repository.save(employee);
     }
 
     public void deleteEmployee(@PathVariable Long id_employee){
