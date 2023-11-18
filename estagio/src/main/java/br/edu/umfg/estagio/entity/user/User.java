@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Table(name = "users")
 @Entity(name = "users")
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id_user")
 public class User {
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_user;
@@ -21,7 +23,7 @@ public class User {
 
     public User(UserRequestDTO data){
         this.email = data.email();
-        this.password = data.password();
+        this.password = encoder.encode(data.password());
     }
 
     public void updateFromDTO(UserRequestDTO data){
@@ -29,7 +31,7 @@ public class User {
             this.email = data.email();
         }
         if (data.password() != null){
-            this.password = data.password();
+            this.password = encoder.encode(data.password());
         }
     }
 }

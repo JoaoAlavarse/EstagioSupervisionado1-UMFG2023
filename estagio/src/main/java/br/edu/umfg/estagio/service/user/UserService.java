@@ -7,6 +7,7 @@ import br.edu.umfg.estagio.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,8 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public void updateUser(Long id_user, UserRequestDTO data){
         Optional<User> optionalUser = repository.findById(id_user);
@@ -35,6 +38,7 @@ public class UserService {
 
     public void saveUser(@RequestBody UserRequestDTO data){
         User user = new User(data);
+
         repository.save(user);
     }
 
@@ -53,6 +57,6 @@ public class UserService {
 
     public Boolean login(UserRequestDTO data){
         User user = repository.findByEmail(data.email());
-        return user != null && user.getPassword().equals(data.password());
+        return user != null && passwordEncoder.matches(data.password(), user.getPassword());
     }
 }
