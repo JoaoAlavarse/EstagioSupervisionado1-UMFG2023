@@ -15,8 +15,8 @@ public enum Gender {
             return value;
         }
 
-        public static br.edu.umfg.estagio.enums.ConstructionStatus fromValue(int value){
-            for (br.edu.umfg.estagio.enums.ConstructionStatus status : br.edu.umfg.estagio.enums.ConstructionStatus.values()){
+        public static br.edu.umfg.estagio.enums.Gender fromValue(int value){
+            for (br.edu.umfg.estagio.enums.Gender status : br.edu.umfg.estagio.enums.Gender.values()){
                 if (status.getValue() == value){
                     return status;
                 }

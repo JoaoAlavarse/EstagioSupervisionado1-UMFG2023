@@ -1,5 +1,6 @@
 package br.edu.umfg.estagio.entity.employee;
 
+import br.edu.umfg.estagio.enums.EmployeeStatus;
 import br.edu.umfg.estagio.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,8 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private Date birth_date;
+    @Enumerated(EnumType.STRING)
+    private EmployeeStatus status;
 
     public Employee(EmployeeRequestDTO data){
         this.name = data.name;
@@ -36,6 +39,7 @@ public class Employee {
         this.charge = data.charge;
         this.gender = data.gender;
         this.birth_date = data.birth_date;
+        this.status = data.status;
     }
 
     public void updateFromDTO(EmployeeRequestDTO data){
@@ -59,6 +63,9 @@ public class Employee {
         }
         if (data.birth_date != null){
             this.birth_date = data.birth_date;
+        }
+        if (data.status != null){
+            this.status = data.status;
         }
     }
 }

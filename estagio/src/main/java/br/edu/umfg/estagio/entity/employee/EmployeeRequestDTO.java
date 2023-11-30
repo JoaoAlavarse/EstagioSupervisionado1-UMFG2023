@@ -1,5 +1,6 @@
 package br.edu.umfg.estagio.entity.employee;
 
+import br.edu.umfg.estagio.enums.EmployeeStatus;
 import br.edu.umfg.estagio.enums.Gender;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,6 +23,8 @@ public class EmployeeRequestDTO {
     public Gender gender;
     @NotNull
     public Date birth_date;
+    @NotNull
+    public EmployeeStatus status;
 
     public String getName() {
         return name;
@@ -77,5 +80,13 @@ public class EmployeeRequestDTO {
 
     public void setBirth_date(Date birth_date) {
         this.birth_date = birth_date;
+    }
+
+    public EmployeeStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(EmployeeStatus status) {
+        this.status = status;
     }
 }
