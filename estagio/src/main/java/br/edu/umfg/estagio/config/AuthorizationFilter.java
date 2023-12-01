@@ -17,20 +17,20 @@ import java.io.IOException;
 public class AuthorizationFilter extends HttpFilter {
     @Autowired
     private AuthenticationService authenticationService;
-//    @Override
-//    protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-//        if (!request.getRequestURI().equals("/login")){
-//            String authorizationHeader = request.getHeader("Authorization");
-//            if (authorizationHeader == null){
-//                response.setStatus(HttpStatus.UNAUTHORIZED.value());
-//                return;
-//            }
-//            String token = authorizationHeader.substring(7);
-//            if (!authenticationService.validate(token)){
-//                response.setStatus(HttpStatus.UNAUTHORIZED.value());
-//                return;
-//            }
-//        }
-//        super.doFilter(request, response, chain);
-//    }
+    @Override
+    protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+        if (!request.getRequestURI().equals("/login")){
+            String authorizationHeader = request.getHeader("Authorization");
+            if (authorizationHeader == null){
+                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                return;
+            }
+            String token = authorizationHeader.substring(7);
+            if (!authenticationService.validate(token)){
+                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                return;
+            }
+        }
+        super.doFilter(request, response, chain);
+    }
 }
